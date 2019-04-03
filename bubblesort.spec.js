@@ -1,5 +1,14 @@
 'use script';
 describe('Bubble Sort', function() {
+  beforeAll(function() {
+    spyOn(window, 'swap').and.callThrough();
+  });
+  it('finishes the bubbleSort by calling swap exactly length squared', function() {
+    let arr = [4, 3, 2, 1];
+    let length = arr.length;
+    bubbleSort(arr);
+    expect(swap.calls.count()).toBeLessThan(length * length + 1);
+  });
   it('handles an empty array', function() {
     expect(bubbleSort([])).toEqual([]);
   });
